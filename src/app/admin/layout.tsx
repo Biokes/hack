@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
       <div className="flex h-screen overflow-hidden">
         <div className={"hidden md:flex md:w-64 md:flex-col"}>
-          <Sidebar isAdmin={true} content={navigationContent} />
+          <Sidebar content={navigationContent} />
         </div>
         <div className="flex flex-1 flex-col overflow-hidden">
           <Header />

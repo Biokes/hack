@@ -169,7 +169,7 @@ function EmployeeDashboardContent() {
   return (
     <div className="flex h-screen">
       <div className="hidden md:flex md:w-64 md:flex-col fixed inset-y-0">
-        <Sidebar isAdmin={false } content={navigationContent}/>
+        <Sidebar content={navigationContent}/>
       </div>
 
       {/* Main content area */}

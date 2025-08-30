@@ -19,6 +19,7 @@ import {
   LogOut,
 } from 'lucide-react';
 import { useEmployee } from '@/contexts/EmployeeContext';
+import { useHR } from '@/contexts/HRContext';
 
 export interface SideBarData {
   name: string,
@@ -33,11 +34,12 @@ export interface SidebarProps {
   isAdmin: boolean
 }
 
-export function Sidebar({ className, content, isAdmin }: SidebarProps) {
+export function Sidebar({ className, content }: SidebarProps) {
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const navigation = content
   const { logout } = useEmployee()
+  const { isHR } = useHR()
   return (
     <div className={cn('flex h-full flex-col border-r bg-muted/10', className)}>
       {/* Header */}
@@ -89,7 +91,7 @@ export function Sidebar({ className, content, isAdmin }: SidebarProps) {
       </nav>
 
       {
-        !isAdmin ?
+        !isHR ?
           <div className="border-t p-2">
             <div className={cn('px-2 py-2', isCollapsed && 'hidden')}>
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">

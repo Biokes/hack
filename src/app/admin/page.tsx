@@ -15,10 +15,20 @@ import {
     Clock,
     UserCheck,
     AlertCircle,
+    LucideProps,
 } from 'lucide-react';
-
+import { ForwardRefExoticComponent, RefAttributes } from 'react';
+import { DepartmentStats, Employee } from '@/types';
+import { mockPayrollPeriods } from '@/lib/mock-data';
+// interface StatsCardProps { 
+//     title: string;
+//     value: number;
+//     description: string;
+//     icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>,
+//     trend: { value: number, isPositive: boolean, label:string}
+// }
 export default function Dashboard() {
-    const { dashboardStats,  isHR } = useHR();
+    const { dashboardStats, isHR } = useHR();
 
     if (!dashboardStats) {
         return (
@@ -42,7 +52,7 @@ export default function Dashboard() {
             day: 'numeric',
         });
     };
-
+    const data : DepartmentStats[] =[]
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
@@ -123,7 +133,11 @@ export default function Dashboard() {
                             Recent Hires
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4">
+                    <CardContent className={`h-[120px] overflow-y-auto ${dashboardStats.recentHires.length === 0
+                            ? "flex items-center justify-center text-center"
+                            : "space-y-4"
+                        }`}
+                    >
                         {dashboardStats.recentHires.length === 0 ? (
                             <p className="text-muted-foreground">No recent hires</p>
                         ) : (
@@ -152,7 +166,6 @@ export default function Dashboard() {
                     </CardContent>
                 </Card>
 
-                {/* Upcoming Payrolls */}
                 <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
@@ -160,7 +173,10 @@ export default function Dashboard() {
                             Upcoming Payrolls
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4">
+                    <CardContent className={`h-[120px] overflow-y-auto ${dashboardStats.upcomingPayrolls.length === 0
+                            ? "flex items-center justify-center text-center"
+                            : "space-y-4"
+                        }`}>
                         {dashboardStats.upcomingPayrolls.length === 0 ? (
                             <p className="text-muted-foreground">No upcoming payrolls</p>
                         ) : (
@@ -199,9 +215,16 @@ export default function Dashboard() {
                         Department Breakdown
                     </CardTitle>
                 </CardHeader>
-                <CardContent>
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                        {dashboardStats.departmentBreakdown.map((dept) => (
+                <CardContent
+                     className={`${dashboardStats.departmentBreakdown.length === 0
+                            ? "flex items-center justify-center text-center"
+                            : "grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-h-[300px] overflow-y-auto "
+                        }`}
+                    >
+                        {dashboardStats.departmentBreakdown.length === 0 ? (
+                            <p className="text-muted-foreground my-10">No Departments Created Yet</p>
+                        ) : (
+                        dashboardStats.departmentBreakdown.map((dept) => (
                             <div key={dept.department} className="space-y-2 p-4 border rounded-lg">
                                 <div className="flex items-center justify-between">
                                     <h4 className="font-medium">{dept.department}</h4>
@@ -216,8 +239,9 @@ export default function Dashboard() {
                                     </p>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        ))
+                    )}
+                    {/* </div> */}
                 </CardContent>
             </Card>
         </div>
