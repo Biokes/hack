@@ -87,14 +87,12 @@ A comprehensive Human Resources and Payroll management application built with Ne
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ### Available Scripts
-
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 
 ## 📁 Project Structure
-
 ```
 src/
 ├── app/                    # Next.js App Router pages
