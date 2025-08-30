@@ -14,15 +14,16 @@ import {
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { MobileSidebar } from './Sidebar';
-import { useContext } from 'react';
-import { HRProvider } from '@/contexts/HRContext';
-
+// import { useContext } from 'react';
+import { useHR } from '@/contexts/HRContext';
+// import { useRouter } from "next/navigation";
 interface HeaderProps {
   title?: string;
 }
 
 export function Header({ title }: HeaderProps) {
-  const isHR = useContext(HRProvider)
+  const { isHR, toggleHrMode } = useHR()
+  // const router = useRouter();
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-16 items-center justify-between px-4">
@@ -40,7 +41,7 @@ export function Header({ title }: HeaderProps) {
         <div className="flex-1 max-w-md mx-4 hidden md:block">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input placeholder="Search employees, payroll..." className="pl-10 pr-4"/>
+            <Input placeholder="Search employees, payroll..." className="pl-10 pr-4" />
           </div>
         </div>
 
@@ -73,20 +74,22 @@ export function Header({ title }: HeaderProps) {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              {/* <DropdownMenuItem>
                 <User className="mr-2 h-4 w-4" />
-                Profile
-              </DropdownMenuItem>
-              <DropdownMenuItem>
                 Settings
-              </DropdownMenuItem>
-              <DropdownMenuItem>
+              </DropdownMenuItem> */}
+              {/* <DropdownMenuItem>
+                Settings
+              </DropdownMenuItem> */}
+              {/* <DropdownMenuItem>
                 Support
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                Log out
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
+              {/* <DropdownMenuSeparator /> */}
+                <button className={`rounded p-1 w-full h-full ${isHR?"hover:bg-red-300 hover:text-gray-700":"hover:bg-green-500 hover:text-white"} transition trnsform-all duration-300`} onClick={() => {
+                  toggleHrMode();
+              }}>
+                  {isHR?"Disconnect Wallet":"Connect Wallet"}
+                </button>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

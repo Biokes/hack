@@ -16,7 +16,10 @@ import {
   CreditCard,
   UserCheck,
   LucideProps,
+  LogOut,
 } from 'lucide-react';
+import { useEmployee } from '@/contexts/EmployeeContext';
+
 export interface SideBarData {
   name: string,
   href: string
@@ -34,6 +37,7 @@ export function Sidebar({ className, content, isAdmin }: SidebarProps) {
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const navigation = content
+  const { logout } = useEmployee()
   return (
     <div className={cn('flex h-full flex-col border-r bg-muted/10', className)}>
       {/* Header */}
@@ -89,19 +93,19 @@ export function Sidebar({ className, content, isAdmin }: SidebarProps) {
           <div className="border-t p-2">
             <div className={cn('px-2 py-2', isCollapsed && 'hidden')}>
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                Employee Portal
+               My Portal
               </p>
             </div>
-            <Link href="/employee/login">
+            <Link href="/employee/login" onClick={logout}>
               <Button
                 variant="ghost"
                 className={cn(
-                  'w-full justify-start gap-2 h-10',
+                  'w-full justify-start gap-2 h-10 hover:bg-red-300 hover:text-gray-700',
                   isCollapsed && 'justify-center px-2'
                 )}
               >
-                <UserCheck className="h-4 w-4 shrink-0" />
-                {!isCollapsed && <span className="truncate">Employee Login</span>}
+                <LogOut className="h-4 w-4 shrink-0" />
+                {!isCollapsed && <span className="truncate">Log Out</span>}
               </Button>
             </Link>
           </div>
@@ -110,7 +114,7 @@ export function Sidebar({ className, content, isAdmin }: SidebarProps) {
             <div className={cn('flex items-center space-x-2', isCollapsed && 'hidden')}>
               <div className="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600" />
               <div className="flex-1 truncate">
-                <p className="text-sm font-medium">Admin User</p>
+                <p className="text-sm font-medium">Admin Orgainsation name</p>
                 <p className="text-xs text-muted-foreground">admin@company.com</p>
               </div>
             </div>

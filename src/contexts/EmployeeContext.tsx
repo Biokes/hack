@@ -218,6 +218,7 @@ interface EmployeeContextType extends EmployeeState {
   getTodaysTimeEntry: () => TimeEntry | null;
   getWeeklyHours: () => number;
   getMonthlyHours: () => number;
+  
 }
 
 const EmployeeContext = createContext<EmployeeContextType | undefined>(undefined);

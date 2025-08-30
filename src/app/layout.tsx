@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { HRProvider } from "@/contexts/HRContext";
 import { Toaster } from "@/components/ui/sonner";
-
+import { EmployeeProvider } from "@/contexts/EmployeeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,14 +29,16 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <HRProvider>
-          <div className="flex h-screen overflow-hidden">
-            <div className="flex flex-1 flex-col overflow-hidden">
-              <main className="flex-1 overflow-auto">
-                {children}
-              </main>
+          <EmployeeProvider>
+            <div className="flex h-screen overflow-hidden">
+              <div className="flex flex-1 flex-col overflow-hidden">
+                <main className="flex-1 overflow-auto">
+                  {children}
+                </main>
+              </div>
             </div>
-          </div>
-          <Toaster />
+            <Toaster />
+          </EmployeeProvider>
         </HRProvider>
       </body>
     </html>

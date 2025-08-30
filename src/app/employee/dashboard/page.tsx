@@ -25,7 +25,8 @@ import {
   CreditCard,
   FileText,
   LayoutDashboard,
-  Settings
+  Settings,
+  Wallet
 } from 'lucide-react';
 import { Sidebar, SideBarData } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
@@ -130,39 +131,41 @@ function EmployeeDashboardContent() {
     const now = new Date(`2000-01-01 ${formatTime(currentTime).split(' ')[0]}`);
     return (now.getTime() - clockInTime.getTime()) / (1000 * 60 * 60);
   };
+
   const navigationContent : SideBarData[] = [
     {
       name: 'Dashboard',
-      href: '/',
+      href: '/employee/dashboard',
       icon: LayoutDashboard,
       badge: 0,
     },
 
     {
       name: 'Payroll',
-      href: '/payroll',
+      href: '/employee/payroll',
       icon: Calculator,
       badge: 2,
     },
     {
       name: 'Pay Slips',
-      href: '/payslips',
+      href: '/employee/payslips',
       icon: FileText,
       badge: 0,
     },
     {
       name: 'Benefits',
-      href: '/benefits',
+      href: '/employee/benefits',
       icon: CreditCard,
       badge: 0,
     },
     {
       name: 'Settings',
-      href: '/settings',
+      href: '/employee/settings',
       icon: Settings,
       badge: 0,
     },
   ];
+
   return (
     <div className="flex h-screen">
       <div className="hidden md:flex md:w-64 md:flex-col fixed inset-y-0">
@@ -192,7 +195,7 @@ function EmployeeDashboardContent() {
                 </div>
               </div>
               <div className="flex items-center space-x-4">
-                <div className="text-right">
+                {/* <div className="text-right">
                   <div className="text-lg font-semibold">{formatTime(currentTime)}</div>
                   <div className="text-sm text-gray-500">
                     {currentTime.toLocaleDateString('en-US', {
@@ -202,10 +205,10 @@ function EmployeeDashboardContent() {
                       day: 'numeric'
                     })}
                   </div>
-                </div>
+                </div> */}
                 <Button variant="outline" onClick={logout} className="ml-4">
-                  <LogOutIcon className="mr-2 h-4 w-4" />
-                  Logout
+                  <Wallet className="mr-2 h-4 w-4" />
+                  Connect Wallet
                 </Button>
               </div>
             </div>
@@ -415,7 +418,6 @@ function EmployeeDashboardContent() {
 
 export default function EmployeeDashboard() {
   return (
-
     <EmployeeDashboardContent />
   );
 }
