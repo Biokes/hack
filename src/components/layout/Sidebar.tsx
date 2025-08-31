@@ -91,7 +91,7 @@ export function Sidebar({ className, content }: SidebarProps) {
       </nav>
 
       {
-        !isHR ?
+        isHR ?
           <div className="border-t p-2">
             <div className={cn('px-2 py-2', isCollapsed && 'hidden')}>
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
@@ -138,18 +138,18 @@ export const navigationContent: SideBarData[] = [
     icon: Users,
     badge: 0,
   },
-  {
-    name: 'Payroll',
-    href: '/admin/payroll',
-    icon: Calculator,
-    badge: 2,
-  },
-  {
-    name: 'Pay Slips',
-    href: '/admin/payslips',
-    icon: FileText,
-    badge: 0,
-  },
+  // {
+  //   name: 'Payroll',
+  //   href: '/admin/payroll',
+  //   icon: Calculator,
+  //   badge: 2,
+  // },
+  // {
+  //   name: 'Pay Slips',
+  //   href: '/admin/payslips',
+  //   icon: FileText,
+  //   badge: 0,
+  // },
   {
     name: 'Departments',
     href: '/admin/departments',
