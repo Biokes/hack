@@ -427,9 +427,9 @@ function EmployeeDashboardContent() {
 
 export default function EmployeeDashboard() {
   return (
-    <ProtectedRoute>
+    // <ProtectedRoute>
       <EmployeeDashboardContent />
-    </ProtectedRoute>
+    // </ProtectedRoute>
   );
 }
 

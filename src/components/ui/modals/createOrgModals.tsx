@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { ethers } from "ethers";
 import contractAbi from "@/abi/index.json";
 import { useWallet } from "@/hooks/useWallet";
-import ExternalProvider from "@ethersproject/providers"
 import { toast } from "sonner";
 type Props = {
   open: boolean;
