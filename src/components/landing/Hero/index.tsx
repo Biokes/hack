@@ -44,6 +44,9 @@ const Hero = () => {
                     <button
                       aria-label="start streaming salary button"
                       className="hover:bg-blackho dark:bg-btndark dark:hover:bg-blackho flex rounded-full bg-black px-7.5 py-2.5 text-white duration-300 ease-in-out"
+                      onClick={() => { 
+                        
+                      }}
                     >
                       Start Streaming
                     </button>
