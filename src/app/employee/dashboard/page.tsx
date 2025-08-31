@@ -131,51 +131,10 @@ function EmployeeDashboardContent() {
     const clockInTime = new Date(`2000-01-01 ${currentEntry.clockIn}`);
     const now = new Date(`2000-01-01 ${formatTime(currentTime).split(' ')[0]}`);
     return (now.getTime() - clockInTime.getTime()) / (1000 * 60 * 60);
-  };
-
-  const navigationContent: SideBarData[] = [
-    {
-      name: 'Dashboard',
-      href: '/employee/dashboard',
-      icon: LayoutDashboard,
-      badge: 0,
-    },
-
-    {
-      name: 'Payroll',
-      href: '/employee/payroll',
-      icon: Calculator,
-      badge: 2,
-    },
-    {
-      name: 'Pay Slips',
-      href: '/employee/payslips',
-      icon: FileText,
-      badge: 0,
-    },
-    {
-      name: 'Benefits',
-      href: '/employee/benefits',
-      icon: CreditCard,
-      badge: 0,
-    },
-    {
-      name: 'Settings',
-      href: '/employee/settings',
-      icon: Settings,
-      badge: 0,
-    },
-  ];
-
+  };  
+  
   return (
     <div className="flex h-screen">
-      {/* <div className="hidden md:flex md:w-64 md:flex-col fixed inset-y-0">
-        <Sidebar content={navigationContent} />
-      </div> */}
-
-      {/* Main content area */}
-      {/* <div className="flex-1 md:ml-64 flex flex-col"> */}
-        {/* Header (fixed) */}
         <div className="bg-white shadow-sm border-b fixed top-0 left-0 md:left-64 right-0 z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
