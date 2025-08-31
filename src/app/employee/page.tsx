@@ -169,12 +169,12 @@ function EmployeeDashboardContent() {
 
   return (
     <div className="flex h-screen">
-      {/* <div className="hidden md:flex md:w-64 md:flex-col fixed inset-y-0">
+      <div className="hidden md:flex md:w-64 md:flex-col fixed inset-y-0">
         <Sidebar content={navigationContent} />
-      </div> */}
+      </div>
 
       {/* Main content area */}
-      {/* <div className="flex-1 md:ml-64 flex flex-col"> */}
+      <div className="flex-1 md:ml-64 flex flex-col">
         {/* Header (fixed) */}
         <div className="bg-white shadow-sm border-b fixed top-0 left-0 md:left-64 right-0 z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -423,7 +423,7 @@ function EmployeeDashboardContent() {
           </div>
         </div>
       </div>
-    // </div>
+    </div>
 
   );
 }
