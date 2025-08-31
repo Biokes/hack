@@ -38,6 +38,7 @@ export default function EmployeeLoginPage() {
       }
     } catch (error) {
       toast.error('Login failed. Please try again.');
+      console.error(error)
     } finally {
       setIsSubmitting(false);
     }

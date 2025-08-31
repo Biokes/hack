@@ -30,7 +30,7 @@ import Calendar from 'react-calendar';
 // }
 export default function Dashboard() {
     const { dashboardStats, isHR } = useHR();
-      const [date, setDate] = useState<Date | undefined>(new Date())
+    //   const [date, setDate] = useState<Date | undefined>(new Date())
 
     if (!dashboardStats) {
         return (
@@ -61,7 +61,7 @@ export default function Dashboard() {
                 <div>
                     <h2 className="text-3xl font-bold tracking-tight"> Welcome, {isHR ? "Santiago" : "Anonymous"}</h2>
                     <p className="text-muted-foreground">
-                        Here's what's happening  {isHR ? "with your organization" : ""}.
+                        Here&apos;s what&apos;s happening  {isHR ? "with your organization" : ""}.
                     </p>
                 </div>
                 <div className="flex space-x-2 hidden">

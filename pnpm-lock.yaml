@@ -123,6 +123,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.1.7(@types/react@19.1.10)
+      '@types/redux':
+        specifier: ^3.6.0
+        version: 3.6.0
       eslint:
         specifier: ^9
         version: 9.33.0(jiti@2.5.1)
@@ -1040,6 +1043,10 @@ packages:
 
   '@types/react@19.1.10':
     resolution: {integrity: sha512-EhBeSYX0Y6ye8pNebpKrwFJq7BoQ8J5SO6NlvNwwHjSj6adXJViPQrKlsyPw7hLBLvckEMO1yxeGdR82YBBlDg==}
+
+  '@types/redux@3.6.0':
+    resolution: {integrity: sha512-ic+60DXHW5seNyqFvfr7Sk5cnXs+HsF9tIeIaxjOuSP5kzgDXC+AzKTYmjAfuLx4Sccm/0vjwBQj3OOkUkwOqg==}
+    deprecated: This is a stub types definition for Redux (https://github.com/reactjs/redux). Redux provides its own type definitions, so you don't need @types/redux installed!
 
   '@types/use-sync-external-store@0.0.6':
     resolution: {integrity: sha512-zFDAD+tlpf2r4asuHEj0XH6pY6i0g5NeAHPn+15wk3BV6JA69eERFXC1gyGThDkVa1zCyKr5jox1+2LbV/AMLg==}
@@ -3478,6 +3485,10 @@ snapshots:
   '@types/react@19.1.10':
     dependencies:
       csstype: 3.1.3
+
+  '@types/redux@3.6.0':
+    dependencies:
+      redux: 5.0.1
 
   '@types/use-sync-external-store@0.0.6': {}
 

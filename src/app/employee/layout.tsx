@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Sidebar } from "@/components/layout/Sidebar";
 import { useEmployee } from '@/contexts/EmployeeContext';
 import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
-import {  Building, FileText, HandCoins, LayoutDashboard, Settings, Wallet } from 'lucide-react';
+import {  FileText, HandCoins, LayoutDashboard, Settings, Wallet } from 'lucide-react';
 
 
 export default function EmployeeLayout({

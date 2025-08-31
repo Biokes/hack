@@ -9,11 +9,11 @@ import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import {
-  Settings as SettingsIcon,
+  // Settings as SettingsIcon,
   Building,
   Bell,
   Shield,
-  Users,
+  // Users,
   DollarSign,
   Mail,
   Globe,

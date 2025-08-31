@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Plus, Calculator, Clock, DollarSign, FileText } from 'lucide-react';
-import { Sidebar } from "@/components/layout/Sidebar";
+// import { Sidebar } from "@/components/layout/Sidebar";
 
 export default function PayrollPage() {
   const { payrollPeriods, employees } = useHR();

@@ -1,57 +1,57 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { useEmployee } from '@/contexts/EmployeeContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+// import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   Clock,
   DollarSign,
   Calendar,
   TrendingUp,
   AlertCircle,
-  CheckCircle,
-  Timer,
-  MapPin,
-  Coffee,
-  LogOut as LogOutIcon,
+  // CheckCircle,
+  // Timer,
+  // MapPin,
+  // Coffee,
+  // LogOut as LogOutIcon,
   User,
   Briefcase,
-  Calculator,
-  CreditCard,
-  FileText,
-  LayoutDashboard,
-  Settings,
+  // Calculator,
+  // CreditCard,
+  // FileText,
+  // LayoutDashboard,
+  // Settings,
   Wallet
 } from 'lucide-react';
-import { Sidebar, SideBarData } from "@/components/layout/Sidebar";
-import { Header } from "@/components/layout/Header";
-import { useHR } from '@/contexts/HRContext';
-import { toast } from 'sonner';
-import { ProtectedRoute } from '@/components/employee/ProtectedRoute';
+// import { Sidebar, SideBarData } from "@/components/layout/Sidebar";
+// import { Header } from "@/components/layout/Header";
+// import { useHR } from '@/contexts/HRContext';
+// import { toast } from 'sonner';
+// import { ProtectedRoute } from '@/components/employee/ProtectedRoute';
 import { Separator } from '@/components/ui/separator';
 
 function EmployeeDashboardContent() {
   const {
     currentEmployee,
     dashboardStats,
-    clockIn,
-    clockOut,
+    // clockIn,
+    // clockOut,
     getCurrentTimeEntry,
     getTodaysTimeEntry,
     dailyBalances,
-    timeEntries,
-    attendanceSettings,
-    logout
+    // timeEntries,
+    // attendanceSettings,
+    // logout
   } = useEmployee();
 
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [isClockingIn, setIsClockingIn] = useState(false);
-  const [isClockingOut, setIsClockingOut] = useState(false);
+  // const [isClockingIn, setIsClockingIn] = useState(false);
+  // const [isClockingOut, setIsClockingOut] = useState(false);
 
   // Update current time every secon
   useEffect(() => {
@@ -81,13 +81,13 @@ function EmployeeDashboardContent() {
     }).format(amount);
   };
 
-  const formatTime = (time: Date) => {
-    return time.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    });
-  };
+  // const formatTime = (time: Date) => {
+  //   return time.toLocaleTimeString('en-US', {
+  //     hour: '2-digit',
+  //     minute: '2-digit',
+  //     second: '2-digit',
+  //   });
+  // };
 
   const formatHours = (hours: number) => {
     const h = Math.floor(hours);
@@ -95,44 +95,44 @@ function EmployeeDashboardContent() {
     return `${h}h ${m}m`;
   };
 
-  const handleClockIn = async () => {
-    setIsClockingIn(true);
-    try {
-      clockIn('Office', 'Regular check-in');
-      toast.success('Clocked in successfully!');
-    } catch (error) {
-      toast.error('Failed to clock in');
-    } finally {
-      setIsClockingIn(false);
-    }
-  };
+  // const handleClockIn = async () => {
+  //   setIsClockingIn(true);
+  //   try {
+  //     clockIn('Office', 'Regular check-in');
+  //     toast.success('Clocked in successfully!');
+  //   } catch (error) {
+  //     toast.error('Failed to clock in');
+  //   } finally {
+  //     setIsClockingIn(false);
+  //   }
+  // };
 
-  const handleClockOut = async () => {
-    setIsClockingOut(true);
-    try {
-      clockOut('End of workday');
-      toast.success('Clocked out successfully!');
-    } catch (error) {
-      toast.error('Failed to clock out');
-    } finally {
-      setIsClockingOut(false);
-    }
-  };
+  // const handleClockOut = async () => {
+  //   setIsClockingOut(true);
+  //   try {
+  //     clockOut('End of workday');
+  //     toast.success('Clocked out successfully!');
+  //   } catch (error) {
+  //     toast.error('Failed to clock out');
+  //   } finally {
+  //     setIsClockingOut(false);
+  //   }
+  // };
 
-  const isLateToday = () => {
-    if (!todaysEntry || !todaysEntry.clockIn) return false;
-    const clockInTime = new Date(`2000-01-01 ${todaysEntry.clockIn}`);
-    const workStart = new Date(`2000-01-01 ${attendanceSettings.workingHours.start}`);
-    return clockInTime.getTime() > workStart.getTime() + (attendanceSettings.lateThreshold * 60 * 1000);
-  };
+  // const isLateToday = () => {
+  //   if (!todaysEntry || !todaysEntry.clockIn) return false;
+  //   const clockInTime = new Date(`2000-01-01 ${todaysEntry.clockIn}`);
+  //   const workStart = new Date(`2000-01-01 ${attendanceSettings.workingHours.start}`);
+  //   return clockInTime.getTime() > workStart.getTime() + (attendanceSettings.lateThreshold * 60 * 1000);
+  // };
 
-  const getWorkingHoursToday = () => {
-    if (!currentEntry) return 0;
-    const clockInTime = new Date(`2000-01-01 ${currentEntry.clockIn}`);
-    const now = new Date(`2000-01-01 ${formatTime(currentTime).split(' ')[0]}`);
-    return (now.getTime() - clockInTime.getTime()) / (1000 * 60 * 60);
-  };  
-  
+  // const getWorkingHoursToday = () => {
+  //   if (!currentEntry) return 0;
+  //   const clockInTime = new Date(`2000-01-01 ${currentEntry.clockIn}`);
+  //   const now = new Date(`2000-01-01 ${formatTime(currentTime).split(' ')[0]}`);
+  //   return (now.getTime() - clockInTime.getTime()) / (1000 * 60 * 60);
+  // };  
+
   return (
     <div className="flex h-screen">
         <div className="bg-white shadow-sm border-b fixed top-0 left-0 md:left-64 right-0 z-10">
@@ -181,7 +181,7 @@ function EmployeeDashboardContent() {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Today's Earnings</CardTitle>
+                  <CardTitle className="text-sm font-medium">Today&apos;s Earnings</CardTitle>
                   <DollarSign className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
