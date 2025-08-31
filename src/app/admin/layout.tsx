@@ -1,6 +1,6 @@
-import { HRProvider } from "@/contexts/HRContext";
-import { EmployeeProvider } from "@/contexts/EmployeeContext";
-import { Toaster } from "@/components/ui/sonner";
+// import { HRProvider } from "@/contexts/HRContext";
+// import { EmployeeProvider } from "@/contexts/EmployeeContext";
+// import { Toaster } from "@/components/ui/sonner";
 import { navigationContent, Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
 // import { useHR } from '@/contexts/HRContext';

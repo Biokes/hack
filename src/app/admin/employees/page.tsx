@@ -19,7 +19,7 @@ export default function EmployeesPage() {
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Employees</h2>
           <p className="text-muted-foreground">
-            Manage your organization's employees and their information.
+            Manage your organization&apos;s employees and their information.
           </p>
         </div>
       </div>

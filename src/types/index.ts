@@ -1,4 +1,5 @@
 // Employee Types
+import { EIP1193Provider } from "viem";
 export interface Employee {
   id: string;
   employeeId: string;
@@ -352,4 +353,10 @@ export interface ResignationForm {
   lastWorkingDay: string;
   reason: string;
   additionalComments?: string;
+}
+
+declare global { 
+  interface Window { 
+    ethereum: EIP1193Provider| undefined
+  }
 }

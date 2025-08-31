@@ -8,13 +8,11 @@ import { Badge } from '@/components/ui/badge';
 import {
   LayoutDashboard, Users,
   Calculator,
-  FileText,
   Settings,
   Menu,
   X,
   Building,
-  CreditCard,
-  UserCheck,
+
   LucideProps,
   LogOut,
 } from 'lucide-react';
@@ -31,7 +29,6 @@ export interface SideBarData {
 export interface SidebarProps {
   className?: string;
   content: SideBarData[];
-  isAdmin: boolean
 }
 
 export function Sidebar({ className, content }: SidebarProps) {
@@ -91,7 +88,7 @@ export function Sidebar({ className, content }: SidebarProps) {
       </nav>
 
       {
-        !isHR ?
+        isHR ?
           <div className="border-t p-2">
             <div className={cn('px-2 py-2', isCollapsed && 'hidden')}>
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
@@ -138,30 +135,30 @@ export const navigationContent: SideBarData[] = [
     icon: Users,
     badge: 0,
   },
-  {
-    name: 'Payroll',
-    href: '/admin/payroll',
-    icon: Calculator,
-    badge: 2,
-  },
-  {
-    name: 'Pay Slips',
-    href: '/admin/payslips',
-    icon: FileText,
-    badge: 0,
-  },
+  // {
+  //   name: 'Payroll',
+  //   href: '/admin/payroll',
+  //   icon: Calculator,
+  //   badge: 2,
+  // },
+  // {
+  //   name: 'Pay Slips',
+  //   href: '/admin/payslips',
+  //   icon: FileText,
+  //   badge: 0,
+  // },
   {
     name: 'Departments',
     href: '/admin/departments',
     icon: Building,
     badge: 0,
   },
-  {
-    name: 'Benefits',
-    href: '/admin/benefits',
-    icon: CreditCard,
-    badge: 0,
-  },
+  // {
+  //   name: 'Benefits',
+  //   href: '/admin/benefits',
+  //   icon: CreditCard,
+  //   badge: 0,
+  // },
   {
     name: 'Settings',
     href: '/admin/settings',
@@ -172,7 +169,7 @@ export const navigationContent: SideBarData[] = [
 export function MobileSidebar({isHR}: {isHR:boolean}) {
 
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log(isHR)
   return (
     <>
       <Button variant="outline" size="icon" className="md:hidden" onClick={() => setIsOpen(true)}>
@@ -183,7 +180,7 @@ export function MobileSidebar({isHR}: {isHR:boolean}) {
         <div className="fixed inset-0 z-50 md:hidden">
           <div className="fixed inset-0 bg-black/50" onClick={() => setIsOpen(false)} />
           <div className="fixed left-0 top-0 h-full w-64 bg-background">
-            <Sidebar content={navigationContent} isAdmin={isHR} />
+            <Sidebar content={navigationContent} />
           </div>
         </div>
       )}
