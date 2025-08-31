@@ -217,7 +217,7 @@ function EmployeeDashboardContent() {
         </div>
 
         {/* Scrollable body */}
-        <div className="flex-1 overflow-y-auto bg-gray-50 pt-[72px]">
+        <div className="flex-1 overflow-y-auto md:overflow-hidden bg-gray-50 pt-[72px]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
               <Card>
@@ -230,9 +230,9 @@ function EmployeeDashboardContent() {
                     {todaysBalance ? formatCurrency(todaysBalance.totalEarnings) : '$0.00'}
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    {todaysBalance?.lateDeduction > 0 && (
+                    {todaysBalance ? todaysBalance.lateDeduction: 0 > 0 && (
                       <span className="text-red-600">
-                        -{formatCurrency(todaysBalance.lateDeduction)} late penalty
+                        -{formatCurrency( 0 )} late penalty
                       </span>
                     )}
                   </p>
