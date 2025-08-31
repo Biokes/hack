@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Employee } from '@/types';
-import { useHR } from '@/contexts/HRContext';
+// import { useHR } from '@/contexts/HRContext';
 import {
   Table,
   TableBody,
@@ -18,8 +18,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
@@ -27,21 +25,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import {
   MoreHorizontal,
   Edit,
-  Trash2,
-  Eye,
   Search,
-  Filter,
   Plus,
 } from 'lucide-react';
 import { EmployeeFormDialog } from './EmployeeFormDialog';
-import { toast } from 'sonner';
+// import { toast } from 'sonner';
 
 interface EmployeeTableProps {
   employees: Employee[];
 }
 
 export function EmployeeTable({ employees }: EmployeeTableProps) {
-  const { deleteEmployee } = useHR();
+  // const { deleteEmployee } = useHR();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [departmentFilter, setDepartmentFilter] = useState<string>('all');

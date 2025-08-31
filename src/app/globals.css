@@ -123,3 +123,30 @@
   button{
     @apply hover:cursor-pointer transition-all transform duration-300 ;
   }
+  
+  ::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: skyblue;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+* {
+  scrollbar-width: thin;          
+  scrollbar-color: grey transparent
+}

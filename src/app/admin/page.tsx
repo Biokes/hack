@@ -1,5 +1,5 @@
 'use client';
-
+import { useState } from "react";
 import { useHR } from '@/contexts/HRContext';
 import { StatsCard } from '@/components/dashboard/StatsCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,16 +10,17 @@ import {
     Users,
     DollarSign,
     TrendingUp,
-    Calendar,
     Building,
-    Clock,
+    // Clock,
     UserCheck,
     AlertCircle,
-    LucideProps,
 } from 'lucide-react';
-import { ForwardRefExoticComponent, RefAttributes } from 'react';
-import { DepartmentStats, Employee } from '@/types';
-import { mockPayrollPeriods } from '@/lib/mock-data';
+import 'react-calendar/dist/Calendar.css';
+import Calendar from 'react-calendar';
+
+// import { ForwardRefExoticComponent, RefAttributes } from 'react';
+// import { DepartmentStats, Employee } from '@/types';
+// import { mockPayrollPeriods } from '@/lib/mock-data';
 // interface StatsCardProps { 
 //     title: string;
 //     value: number;
@@ -29,6 +30,7 @@ import { mockPayrollPeriods } from '@/lib/mock-data';
 // }
 export default function Dashboard() {
     const { dashboardStats, isHR } = useHR();
+    //   const [date, setDate] = useState<Date | undefined>(new Date())
 
     if (!dashboardStats) {
         return (
@@ -52,19 +54,19 @@ export default function Dashboard() {
             day: 'numeric',
         });
     };
-    const data : DepartmentStats[] =[]
+    // const data : DepartmentStats[] =[]
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-3xl font-bold tracking-tight"> Welcome, {isHR ? "Admin" : "Santiago"}</h2>
+                    <h2 className="text-3xl font-bold tracking-tight"> Welcome, {isHR ? "Santiago" : "Anonymous"}</h2>
                     <p className="text-muted-foreground">
-                        Here's what's happening  {isHR ? "with your organization" : ""}.
+                        Here&apos;s what&apos;s happening  {isHR ? "with your organization" : ""}.
                     </p>
                 </div>
-                <div className="flex space-x-2">
+                <div className="flex space-x-2 hidden">
                     <Button variant="outline">
-                        <Calendar className="mr-2 h-4 w-4" />
+                        <Calendar className="mr-2 h-4 w-4" activeStartDate={new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay())}/>
                         This Month
                     </Button>
                     <Button className="hidden">
@@ -100,7 +102,7 @@ export default function Dashboard() {
                     }}
                 />
                 <StatsCard
-                    title="Total Payroll"
+                    title="Total monthly Payroll"
                     value={formatCurrency(dashboardStats.totalPayroll)}
                     description="Monthly payroll amount"
                     icon={<DollarSign className="h-4 w-4" />}
@@ -166,7 +168,7 @@ export default function Dashboard() {
                     </CardContent>
                 </Card>
 
-                <Card>
+                {/* <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                             <Clock className="h-5 w-5" />
@@ -204,7 +206,7 @@ export default function Dashboard() {
                             ))
                         )}
                     </CardContent>
-                </Card>
+                </Card> */}
             </div>
 
             {/* Department Breakdown */}

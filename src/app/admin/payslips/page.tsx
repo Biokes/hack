@@ -16,12 +16,11 @@ import {
   DollarSign,
   TrendingUp,
   Calculator,
-  Receipt
 } from 'lucide-react';
 import { useState } from 'react';
 
 export default function PaySlipsPage() {
-  const { paySlips, employees, payrollPeriods } = useHR();
+  const { paySlips} = useHR();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
 

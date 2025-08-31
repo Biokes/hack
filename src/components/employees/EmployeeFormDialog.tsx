@@ -93,7 +93,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
 
   const isEditing = !!employee;
 
-  // Load employee data when editing
+ 
   useEffect(() => {
     if (employee && open) {
       setFormData({
@@ -121,19 +121,30 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
     }
   }, [employee, open]);
 
-  const handleInputChange = (field: string, value: string | number) => {
-    const keys = field.split('.');
-    if (keys.length === 1) {
-      setFormData(prev => ({ ...prev, [field]: value }));
-    } else if (keys.length === 2) {
-      setFormData(prev => ({
-        ...prev,
-        [keys[0]]: {
-          ...prev[keys[0] as keyof EmployeeFormData] as any,
-          [keys[1]]: value,
-        },
-      }));
-    }
+  const handleInputChange = <K extends keyof EmployeeFormData>(
+    field: string,
+    value: string | number
+  ) => {
+    const keys = field.split(".");
+
+    setFormData((prev) => {
+      if (keys.length === 1) {
+        return { ...prev, [field]: value } as EmployeeFormData;
+      } else if (keys.length === 2) {
+        const [parentKey, childKey] = keys as [keyof EmployeeFormData, string];
+        const parentValue = prev[parentKey];
+        if (typeof parentValue === "object" && parentValue !== null) {
+          return {
+            ...prev,
+            [parentKey]: {
+              ...parentValue,
+              [childKey]: value,
+            },
+          };
+        }
+      }
+      return prev;
+    });
   };
 
   const validateForm = (): boolean => {
@@ -170,7 +181,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
-        phone: formData.phone,
+        phone: "",
         position: formData.position,
         department: formData.department,
         hireDate: formData.hireDate,
@@ -188,7 +199,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
         updateEmployee({ ...employee, ...employeeData });
         toast.success('Employee updated successfully');
       } else {
-        addEmployee(employeeData as any);
+        addEmployee(employeeData as Employee);
         toast.success('Employee added successfully');
       }
 
@@ -209,17 +220,17 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
             {isEditing ? 'Edit Employee' : 'Add New Employee'}
           </DialogTitle>
           <DialogDescription>
-            {isEditing 
+            {isEditing
               ? 'Update employee information below.'
               : 'Fill in the information to add a new employee.'}
           </DialogDescription>
         </DialogHeader>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="personal">Personal Info</TabsTrigger>
             <TabsTrigger value="employment">Employment</TabsTrigger>
-            <TabsTrigger value="payroll">Payroll</TabsTrigger>
+            {/* <TabsTrigger value="payroll">Payroll</TabsTrigger> */}
           </TabsList>
 
           <TabsContent value="personal" className="space-y-4">
@@ -261,7 +272,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 hidden">
                   <Label htmlFor="phone">Phone Number</Label>
                   <Input
                     id="phone"
@@ -322,7 +333,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="status">Status</Label>
-                    <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value as any)}>
+                    <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value as string)}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -351,7 +362,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
             </Card>
           </TabsContent>
 
-          <TabsContent value="payroll" className="space-y-4">
+          {/* <TabsContent value="payroll" className="space-y-4">
             <Card>
               <CardHeader>
                 <CardTitle>Payroll Information</CardTitle>
@@ -376,7 +387,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
                 </div>
               </CardContent>
             </Card>
-          </TabsContent>
+          </TabsContent> */}
         </Tabs>
 
         <DialogFooter>
