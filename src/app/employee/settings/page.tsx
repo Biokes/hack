@@ -9,9 +9,11 @@ import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import {
+  // Settings as SettingsIcon,
   Building,
   Bell,
   Shield,
+  // Users,
   DollarSign,
   Mail,
   Globe,
@@ -33,12 +35,12 @@ export default function SettingsPage() {
       </div>
 
       <Tabs defaultValue="company" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="company">Company</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-3">
+          {/* <TabsTrigger value="company">Company</TabsTrigger> */}
           <TabsTrigger value="payroll">Payroll</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
-          <TabsTrigger value="security">Security</TabsTrigger>
-          <TabsTrigger value="integrations">Integrations</TabsTrigger>
+          {/* <TabsTrigger value="security">Security</TabsTrigger> */}
+          <TabsTrigger value="Investments">Investments</TabsTrigger>
         </TabsList>
 
         <TabsContent value="company" className="space-y-6">
@@ -190,9 +192,9 @@ export default function SettingsPage() {
 
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label className="text-base">New Employee Alerts</Label>
+                    <Label className="text-base">New Alerts</Label>
                     <p className="text-sm text-muted-foreground">
-                      Get notified when new employees are added
+                      Get notified when new updates are added
                     </p>
                   </div>
                   <Switch defaultChecked />
@@ -290,12 +292,12 @@ export default function SettingsPage() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="integrations" className="space-y-4 relative max-h-[160px]">
+        <TabsContent value="Investments" className="space-y-4 relative max-h-[160px]">
           <Card className="relative overflow-hidden">
             {/* Overlay */}
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/60 backdrop-blur-[1px]">
               <h2 className="text-lg font-semibold">🚧 Coming Soon</h2>
-              <p className="text-sm text-muted-foreground">Integrations will be available soon.</p>
+              <p className="text-sm text-muted-foreground">Investments and staking will be available soon.</p>
             </div>
 
             {/* Content underneath (dimmed, no blur) */}

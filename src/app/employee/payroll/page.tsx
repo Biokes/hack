@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Plus, Calculator, Clock, DollarSign, FileText } from 'lucide-react';
-// import { Sidebar } from "@/components/layout/Sidebar";
+import { Sidebar } from "@/components/layout/Sidebar";
 
 export default function PayrollPage() {
   const { payrollPeriods, employees } = useHR();
@@ -65,26 +65,13 @@ export default function PayrollPage() {
       <div className="grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Employees</CardTitle>
-            <Calculator className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{employees.filter(e => e.status === 'active').length}</div>
-            <p className="text-xs text-muted-foreground">
-              Active employees in payroll
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending Payroll</CardTitle>
+            <CardTitle className="text-sm font-medium">Payment Recieved</CardTitle>
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatCurrency(totalPendingPayroll)}</div>
             <p className="text-xs text-muted-foreground">
-              Amount pending processing
+              Total Payments Recieved
             </p>
           </CardContent>
         </Card>
@@ -102,7 +89,7 @@ export default function PayrollPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        {/* <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Periods</CardTitle>
             <FileText className="h-4 w-4 text-muted-foreground" />
@@ -113,6 +100,19 @@ export default function PayrollPage() {
               All payroll periods
             </p>
           </CardContent>
+        </Card> */}
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Investments</CardTitle>
+            <Calculator className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">0</div>
+            <p className="text-xs text-muted-foreground">
+              Active Investments in payroll
+            </p>
+          </CardContent>
         </Card>
       </div>
 
@@ -121,7 +121,7 @@ export default function PayrollPage() {
         <CardHeader>
           <CardTitle>Payroll Periods</CardTitle>
           <CardDescription>
-            View and manage all payroll periods and their processing status.
+            View all payroll periods and their status.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -135,7 +135,7 @@ export default function PayrollPage() {
                   <TableHead>Net Amount</TableHead>
                   <TableHead>Deductions</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
+                  {/* <TableHead className="text-right">Actions</TableHead> */}
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -171,11 +171,11 @@ export default function PayrollPage() {
                           {period.status}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-right">
+                      {/* <TableCell className="text-right">
                         <Button variant="ghost" size="sm">
                           View Details
                         </Button>
-                      </TableCell>
+                      </TableCell> */}
                     </TableRow>
                   ))
                 )}

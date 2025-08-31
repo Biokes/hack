@@ -21,18 +21,18 @@ import {
   // LogOut as LogOutIcon,
   User,
   Briefcase,
-  // Calculator,
-  // CreditCard,
-  // FileText,
-  // LayoutDashboard,
-  // Settings,
+  Calculator,
+  CreditCard,
+  FileText,
+  LayoutDashboard,
+  Settings,
   Wallet
 } from 'lucide-react';
-// import { Sidebar, SideBarData } from "@/components/layout/Sidebar";
+import { Sidebar, SideBarData } from "@/components/layout/Sidebar";
 // import { Header } from "@/components/layout/Header";
 // import { useHR } from '@/contexts/HRContext';
 // import { toast } from 'sonner';
-// import { ProtectedRoute } from '@/components/employee/ProtectedRoute';
+import { ProtectedRoute } from '@/components/employee/ProtectedRoute';
 import { Separator } from '@/components/ui/separator';
 
 function EmployeeDashboardContent() {
@@ -41,19 +41,16 @@ function EmployeeDashboardContent() {
     dashboardStats,
     // clockIn,
     // clockOut,
-    getCurrentTimeEntry,
-    getTodaysTimeEntry,
-    dailyBalances,
+    // getCurrentTimeEntry,
+    // getTodaysTimeEntry,
     // timeEntries,
     // attendanceSettings,
-    // logout
+    // logout,
+    dailyBalances,
   } = useEmployee();
 
   const [currentTime, setCurrentTime] = useState(new Date());
-  // const [isClockingIn, setIsClockingIn] = useState(false);
-  // const [isClockingOut, setIsClockingOut] = useState(false);
-
-  // Update current time every secon
+  if (currentTime) { }
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
@@ -70,8 +67,8 @@ function EmployeeDashboardContent() {
     );
   }
 
-  const currentEntry = getCurrentTimeEntry();
-  const todaysEntry = getTodaysTimeEntry();
+  // const currentEntry = getCurrentTimeEntry();
+  // const todaysEntry = getTodaysTimeEntry();
   const todaysBalance = dailyBalances.find(b => b.date === new Date().toISOString().split('T')[0]);
 
   const formatCurrency = (amount: number) => {
@@ -131,10 +128,51 @@ function EmployeeDashboardContent() {
   //   const clockInTime = new Date(`2000-01-01 ${currentEntry.clockIn}`);
   //   const now = new Date(`2000-01-01 ${formatTime(currentTime).split(' ')[0]}`);
   //   return (now.getTime() - clockInTime.getTime()) / (1000 * 60 * 60);
-  // };  
+  // };
+
+  const navigationContent: SideBarData[] = [
+    {
+      name: 'Dashboard',
+      href: '/employee/dashboard',
+      icon: LayoutDashboard,
+      badge: 0,
+    },
+
+    {
+      name: 'Payroll',
+      href: '/employee/payroll',
+      icon: Calculator,
+      badge: 2,
+    },
+    {
+      name: 'Pay Slips',
+      href: '/employee/payslips',
+      icon: FileText,
+      badge: 0,
+    },
+    {
+      name: 'Benefits',
+      href: '/employee/benefits',
+      icon: CreditCard,
+      badge: 0,
+    },
+    {
+      name: 'Settings',
+      href: '/employee/settings',
+      icon: Settings,
+      badge: 0,
+    },
+  ];
 
   return (
     <div className="flex h-screen">
+      <div className="hidden md:flex md:w-64 md:flex-col fixed inset-y-0">
+        <Sidebar content={navigationContent} />
+      </div>
+
+      {/* Main content area */}
+      <div className="flex-1 md:ml-64 flex flex-col">
+        {/* Header (fixed) */}
         <div className="bg-white shadow-sm border-b fixed top-0 left-0 md:left-64 right-0 z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
@@ -176,7 +214,7 @@ function EmployeeDashboardContent() {
         </div>
 
         {/* Scrollable body */}
-        <div className="flex-1 overflow-y-auto md:overflow-hidden bg-gray-50 pt-[72px]">
+        <div className="flex-1 overflow-y-auto bg-gray-50 pt-[72px]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
               <Card>
@@ -189,9 +227,9 @@ function EmployeeDashboardContent() {
                     {todaysBalance ? formatCurrency(todaysBalance.totalEarnings) : '$0.00'}
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    {todaysBalance ? todaysBalance.lateDeduction: 0 > 0 && (
+                    {todaysBalance?.lateDeduction !== undefined && todaysBalance.lateDeduction > 0 && (
                       <span className="text-red-600">
-                        -{formatCurrency( 0 )} late penalty
+                        -{formatCurrency(todaysBalance.lateDeduction)} late penalty
                       </span>
                     )}
                   </p>
@@ -255,7 +293,7 @@ function EmployeeDashboardContent() {
                     <CardTitle>Recent Transactions</CardTitle>
                     <CardDescription>Your most recent trasactions history</CardDescription>
                   </CardHeader>
-                                    <Separator />
+                  <Separator />
                   <CardContent>
                     <div className="space-y-4 max-h-[200px] overflow-y-auto">
                       {dashboardStats.recentTimeEntries.length > 0 ? (
@@ -350,9 +388,9 @@ function EmployeeDashboardContent() {
                       <Briefcase className="mr-2 h-4 w-4" />
                       Submit Resignation
                     </Button>
-                     <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm">
-                    <span className="text-lg font-semibold text-gray-700">🚧 Coming Soon</span>
-                  </div>
+                    <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm">
+                      <span className="text-lg font-semibold text-gray-700">🚧 Coming Soon</span>
+                    </div>
                   </CardContent>
                 </Card>
 
@@ -382,15 +420,16 @@ function EmployeeDashboardContent() {
           </div>
         </div>
       </div>
-    // </div>
+    </div>
 
   );
 }
 
 export default function EmployeeDashboard() {
   return (
-    <EmployeeDashboardContent />
+    <ProtectedRoute>
+      <EmployeeDashboardContent />
+    </ProtectedRoute>
   );
 }
-// <ProtectedRoute>
-//    {/* </ProtectedRoute> */}
+

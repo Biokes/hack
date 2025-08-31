@@ -228,6 +228,7 @@ export function EmployeeProvider({ children }: { children: ReactNode }) {
 
   // Mock login function
   const login = async (employeeId: string, password: string): Promise<boolean> => {
+    console.log(password[0])
     dispatch({ type: 'SET_LOADING', payload: true });
     
     try {
@@ -261,6 +262,7 @@ export function EmployeeProvider({ children }: { children: ReactNode }) {
       return false;
     } catch (error) {
       dispatch({ type: 'SET_ERROR', payload: 'Login failed' });
+      console.error(error)
       return false;
     }
   };
@@ -525,6 +527,7 @@ export function EmployeeProvider({ children }: { children: ReactNode }) {
         dispatch({ type: 'LOGIN_SUCCESS', payload: { employee: session.employee, session } });
         dispatch({ type: 'INITIALIZE_EMPLOYEE_DATA', payload: session.employee.id });
       } catch (error) {
+        console.error(error)
         localStorage.removeItem('employee-session');
       }
     }
@@ -643,5 +646,7 @@ function generateMockDailyBalances(employeeId: string): DailyBalance[] {
 }
 
 function generateMockLeaveRequests(employeeId: string): LeaveRequest[] {
-  return []; // Empty for now, will be populated when employee submits requests
+  employeeId+""
+  return []; // Empty for now, will be populated when employee submits reque
+  //sts
 }
