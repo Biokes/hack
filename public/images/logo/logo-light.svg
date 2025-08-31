@@ -1,0 +1,11 @@
+<svg width="140" height="30" viewBox="0 0 140 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- StreamPay Icon -->
+  <circle cx="15" cy="15" r="10" fill="#006BFF"/>
+  <path d="M11 10L19 15L11 20V10Z" fill="white"/>
+  <circle cx="22" cy="10" r="1.5" fill="#57EBB9"/>
+  <circle cx="25" cy="13" r="1" fill="#57EBB9"/>
+  <circle cx="23" cy="18" r="0.8" fill="#57EBB9"/>
+  
+  <!-- StreamPay Text -->
+  <text x="32" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#181C31">StreamPay</text>
+</svg>

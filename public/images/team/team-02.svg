@@ -1,0 +1,16 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#E8F4FD"/>
+  <circle cx="100" cy="80" r="35" fill="#006BFF"/>
+  <circle cx="100" cy="160" r="65" fill="#006BFF"/>
+  <!-- Hair -->
+  <path d="M65 65C65 45 80 30 100 30C120 30 135 45 135 65V75H65V65Z" fill="#8B4513"/>
+  <!-- Face -->
+  <circle cx="100" cy="80" r="30" fill="#FDBCB4"/>
+  <!-- Eyes -->
+  <circle cx="92" cy="75" r="3" fill="#333"/>
+  <circle cx="108" cy="75" r="3" fill="#333"/>
+  <!-- Nose -->
+  <circle cx="100" cy="82" r="1.5" fill="#E8A098"/>
+  <!-- Mouth -->
+  <path d="M95 88C97 90 103 90 105 88" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
