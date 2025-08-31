@@ -8,12 +8,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
-import { 
-  Settings as SettingsIcon, 
-  Building, 
-  Bell, 
-  Shield, 
-  Users, 
+import {
+  Settings as SettingsIcon,
+  Building,
+  Bell,
+  Shield,
+  Users,
   DollarSign,
   Mail,
   Globe,
@@ -62,10 +62,10 @@ export default function SettingsPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="company-id">Company ID</Label>
-                  <Input id="company-id" defaultValue="ACME-001" />
+                  <Input id="company-id" defaultValue="ACME-001" disabled />
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="address">Address</Label>
                 <Input id="address" defaultValue="123 Business St, City, State 12345" />
@@ -81,7 +81,7 @@ export default function SettingsPage() {
                   <Input id="email" type="email" defaultValue="info@acme.com" />
                 </div>
               </div>
-
+              {/* 
               <div className="space-y-2">
                 <Label htmlFor="timezone">Timezone</Label>
                 <Select defaultValue="america-new-york">
@@ -95,7 +95,7 @@ export default function SettingsPage() {
                     <SelectItem value="america-los-angeles">America/Los_Angeles</SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
+              </div> */}
             </CardContent>
           </Card>
         </TabsContent>
@@ -108,7 +108,7 @@ export default function SettingsPage() {
                 Payroll Configuration
               </CardTitle>
               <CardDescription>
-                Configure payroll settings and tax information.
+                Configure payroll settings.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -141,12 +141,12 @@ export default function SettingsPage() {
                 </div>
               </div>
 
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <Label htmlFor="tax-id">Federal Tax ID (EIN)</Label>
                 <Input id="tax-id" defaultValue="12-3456789" />
-              </div>
+              </div> */}
 
-              <div className="grid grid-cols-2 gap-4">
+              {/* <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="state-tax">State Tax Rate (%)</Label>
                   <Input id="state-tax" type="number" defaultValue="5.0" />
@@ -160,7 +160,7 @@ export default function SettingsPage() {
               <div className="flex items-center space-x-2">
                 <Switch id="auto-payroll" defaultChecked />
                 <Label htmlFor="auto-payroll">Enable automatic payroll processing</Label>
-              </div>
+              </div> */}
             </CardContent>
           </Card>
         </TabsContent>
@@ -245,9 +245,9 @@ export default function SettingsPage() {
                 Manage security and access control settings.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
+                {/* <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <Label className="text-base">Two-Factor Authentication</Label>
                     <p className="text-sm text-muted-foreground">
@@ -255,13 +255,13 @@ export default function SettingsPage() {
                     </p>
                   </div>
                   <Switch />
-                </div>
+                </div> */}
 
                 <Separator />
 
                 <div className="space-y-2">
                   <Label htmlFor="session-timeout">Session Timeout (minutes)</Label>
-                  <Input id="session-timeout" type="number" defaultValue="30" />
+                  <Input id="session-timeout" type="number" defaultValue="45" disabled />
                 </div>
 
                 <div className="space-y-2">
@@ -271,7 +271,7 @@ export default function SettingsPage() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="basic">Basic (8+ characters)</SelectItem>
+                      {/* <SelectItem value="basic">Basic (8+ characters)</SelectItem> */}
                       <SelectItem value="strong">Strong (8+ chars, numbers, symbols)</SelectItem>
                       <SelectItem value="complex">Complex (12+ chars, mixed case, numbers, symbols)</SelectItem>
                     </SelectContent>
@@ -292,66 +292,54 @@ export default function SettingsPage() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="integrations" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Globe className="h-5 w-5" />
-                Integrations
-              </CardTitle>
-              <CardDescription>
-                Connect with external services and APIs.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <Mail className="h-8 w-8 text-blue-500" />
+        <TabsContent value="integrations" className="space-y-4 relative max-h-[160px]">
+          <Card className="relative overflow-hidden">
+            {/* Overlay */}
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/60 backdrop-blur-[1px]">
+              <h2 className="text-lg font-semibold">🚧 Coming Soon</h2>
+              <p className="text-sm text-muted-foreground">Integrations will be available soon.</p>
+            </div>
+
+            {/* Content underneath (dimmed, no blur) */}
+            <div className="opacity-70 pointer-events-none">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Globe className="h-4 w-4" />
+                  Integrations
+                </CardTitle>
+                <CardDescription className="text-xs">
+                  Connect with external services and APIs.
+                </CardDescription>
+              </CardHeader>
+
+              <CardContent className="space-y-2">
+                <div className="flex items-center justify-between p-3 border rounded-lg">
+                  <div className="flex items-center space-x-2">
+                    <Mail className="h-6 w-6 text-blue-500" />
                     <div>
-                      <h4 className="font-medium">Email Service</h4>
-                      <p className="text-sm text-muted-foreground">SendGrid Integration</p>
+                      <h4 className="text-sm font-medium">Email Service</h4>
+                      <p className="text-xs text-muted-foreground">SendGrid</p>
                     </div>
                   </div>
-                  <Button variant="outline" size="sm">Configure</Button>
+                  <Button variant="outline">Configure</Button>
                 </div>
 
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <Database className="h-8 w-8 text-green-500" />
+                <div className="flex items-center justify-between p-3 border rounded-lg">
+                  <div className="flex items-center space-x-2">
+                    <Database className="h-6 w-6 text-green-500" />
                     <div>
-                      <h4 className="font-medium">Database Backup</h4>
-                      <p className="text-sm text-muted-foreground">Automated daily backups</p>
+                      <h4 className="text-sm font-medium">Database Backup</h4>
+                      <p className="text-xs text-muted-foreground">Daily backups</p>
                     </div>
                   </div>
-                  <Button variant="outline" size="sm">Configure</Button>
+                  <Button variant="outline">Configure</Button>
                 </div>
-
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <DollarSign className="h-8 w-8 text-purple-500" />
-                    <div>
-                      <h4 className="font-medium">Banking API</h4>
-                      <p className="text-sm text-muted-foreground">Direct deposit processing</p>
-                    </div>
-                  </div>
-                  <Button variant="outline" size="sm">Configure</Button>
-                </div>
-
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <Users className="h-8 w-8 text-orange-500" />
-                    <div>
-                      <h4 className="font-medium">LDAP/Active Directory</h4>
-                      <p className="text-sm text-muted-foreground">User authentication</p>
-                    </div>
-                  </div>
-                  <Button variant="outline" size="sm">Configure</Button>
-                </div>
-              </div>
-            </CardContent>
+              </CardContent>
+            </div>
           </Card>
         </TabsContent>
+
+
       </Tabs>
 
       {/* Save Button */}

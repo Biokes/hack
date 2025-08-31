@@ -53,13 +53,13 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
 
   // Filter employees
   const filteredEmployees = employees.filter(employee => {
-    const matchesSearch = 
+    const matchesSearch =
       employee.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       employee.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       employee.employeeId.toLowerCase().includes(searchTerm.toLowerCase()) ||
       employee.position.toLowerCase().includes(searchTerm.toLowerCase());
-    
+
     const matchesStatus = statusFilter === 'all' || employee.status === statusFilter;
     const matchesDepartment = departmentFilter === 'all' || employee.department === departmentFilter;
 
@@ -99,12 +99,12 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
     setIsFormDialogOpen(true);
   };
 
-  const handleDelete = (employee: Employee) => {
-    if (confirm(`Are you sure you want to delete ${employee.firstName} ${employee.lastName}?`)) {
-      deleteEmployee(employee.id);
-      toast.success('Employee deleted successfully');
-    }
-  };
+  // const handleDelete = (employee: Employee) => {
+  //   if (confirm(`Are you sure you want to delete ${employee.firstName} ${employee.lastName}?`)) {
+  //     deleteEmployee(employee.id);
+  //     toast.success('Employee deleted successfully');
+  //   }
+  // };
 
   const handleAddNew = () => {
     setEditingEmployee(null);
@@ -113,7 +113,6 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
 
   return (
     <div className="space-y-4">
-      {/* Filters and Search */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-2 md:flex-row md:items-center">
           <div className="relative">
@@ -125,7 +124,7 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
               className="pl-10 md:w-[300px]"
             />
           </div>
-          
+
           <Select value={statusFilter} onValueChange={setStatusFilter}>
             <SelectTrigger className="w-[150px]">
               <SelectValue placeholder="Status" />
@@ -168,10 +167,10 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
           <TableHeader>
             <TableRow>
               <TableHead>Employee</TableHead>
-              <TableHead>ID</TableHead>
+              <TableHead>Address</TableHead>
               <TableHead>Position</TableHead>
               <TableHead>Department</TableHead>
-              <TableHead>Hire Date</TableHead>
+              <TableHead>Date Hired</TableHead>
               <TableHead>Salary</TableHead>
               <TableHead>Status</TableHead>
               <TableHead className="text-right">Actions</TableHead>
@@ -186,7 +185,7 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
               </TableRow>
             ) : (
               filteredEmployees.map((employee) => (
-                <TableRow key={employee.id}>
+                <TableRow key={employee.id} className="hover:cursor-pointer">
                   <TableCell>
                     <div className="flex items-center gap-3">
                       <Avatar className="h-8 w-8">
@@ -227,24 +226,18 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => {}/* View details */}>
-                          <Eye className="mr-2 h-4 w-4" />
-                          View Details
-                        </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => handleEdit(employee)}>
                           <Edit className="mr-2 h-4 w-4" />
                           Edit
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator />
+                        {/* <DropdownMenuSeparator />
                         <DropdownMenuItem
                           onClick={() => handleDelete(employee)}
-                          className="text-destructive"
+                          className="text-destructive cursor-pointer focus:bg-red-100 focus:text-destructive hover:bg-red-100 hover:text-destructive"
                         >
                           <Trash2 className="mr-2 h-4 w-4" />
                           Delete
-                        </DropdownMenuItem>
+                        </DropdownMenuItem> */}
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </TableCell>
@@ -255,7 +248,6 @@ export function EmployeeTable({ employees }: EmployeeTableProps) {
         </Table>
       </div>
 
-      {/* Employee Form Dialog */}
       <EmployeeFormDialog
         employee={editingEmployee}
         open={isFormDialogOpen}

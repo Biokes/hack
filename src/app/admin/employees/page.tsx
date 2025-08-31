@@ -2,12 +2,11 @@
 
 import { useHR } from '@/contexts/HRContext';
 import { EmployeeTable } from '@/components/employees/EmployeeTable';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, UserPlus, Activity, Clock } from 'lucide-react';
 
 export default function EmployeesPage() {
-  const { employees, dashboardStats } = useHR();
+  const { employees } = useHR();
 
   const activeEmployees = employees.filter(emp => emp.status === 'active').length;
   const inactiveEmployees = employees.filter(emp => emp.status === 'inactive').length;
@@ -15,7 +14,7 @@ export default function EmployeesPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Employees</h2>
@@ -80,7 +79,6 @@ export default function EmployeesPage() {
         </Card>
       </div>
 
-      {/* Employee Table */}
       <Card>
         <CardHeader>
           <CardTitle>Employee Directory</CardTitle>
