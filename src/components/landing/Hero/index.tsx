@@ -1,9 +1,11 @@
 "use client";
 import Image from "next/image";
 import { FormEvent, useState } from "react";
+import CreateOrgModal from "@/components/ui/modals/createOrgModals";
 
 const Hero = () => {
   const [email, setEmail] = useState("");
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   const handleSubmit = (e:  FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,9 +46,7 @@ const Hero = () => {
                     <button
                       aria-label="start streaming salary button"
                       className="hover:bg-blackho dark:bg-btndark dark:hover:bg-blackho flex rounded-full bg-black px-7.5 py-2.5 text-white duration-300 ease-in-out"
-                      onClick={() => { 
-                        
-                      }}
+                      onClick={() => setShowCreateModal(true)}
                     >
                       Start Streaming
                     </button>
@@ -107,3 +107,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

@@ -355,8 +355,3 @@ export interface ResignationForm {
   additionalComments?: string;
 }
 
-declare global { 
-  interface Window { 
-    ethereum: EIP1193Provider| undefined
-  }
-}
