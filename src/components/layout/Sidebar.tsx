@@ -156,12 +156,12 @@ export const navigationContent: SideBarData[] = [
     icon: Building,
     badge: 0,
   },
-  {
-    name: 'Benefits',
-    href: '/admin/benefits',
-    icon: CreditCard,
-    badge: 0,
-  },
+  // {
+  //   name: 'Benefits',
+  //   href: '/admin/benefits',
+  //   icon: CreditCard,
+  //   badge: 0,
+  // },
   {
     name: 'Settings',
     href: '/admin/settings',

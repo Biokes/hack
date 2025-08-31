@@ -170,7 +170,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
-        phone: formData.phone,
+        phone: "",
         position: formData.position,
         department: formData.department,
         hireDate: formData.hireDate,
@@ -216,10 +216,10 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
         </DialogHeader>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="personal">Personal Info</TabsTrigger>
             <TabsTrigger value="employment">Employment</TabsTrigger>
-            <TabsTrigger value="payroll">Payroll</TabsTrigger>
+            {/* <TabsTrigger value="payroll">Payroll</TabsTrigger> */}
           </TabsList>
 
           <TabsContent value="personal" className="space-y-4">
@@ -261,7 +261,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 hidden">
                   <Label htmlFor="phone">Phone Number</Label>
                   <Input
                     id="phone"
@@ -338,7 +338,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
                 <div className="space-y-2">
                   <Label htmlFor="salary">Annual Salary *</Label>
                   <Input
-                    id="salary"
+                    id="salary" 
                     type="number"
                     value={formData.salary}
                     onChange={(e) => handleInputChange('salary', e.target.value)}
@@ -351,7 +351,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
             </Card>
           </TabsContent>
 
-          <TabsContent value="payroll" className="space-y-4">
+          {/* <TabsContent value="payroll" className="space-y-4">
             <Card>
               <CardHeader>
                 <CardTitle>Payroll Information</CardTitle>
@@ -376,7 +376,7 @@ export function EmployeeFormDialog({ employee, open, onOpenChange, onSuccess }: 
                 </div>
               </CardContent>
             </Card>
-          </TabsContent>
+          </TabsContent> */}
         </Tabs>
 
         <DialogFooter>

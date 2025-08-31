@@ -120,22 +120,22 @@ export default function SettingsPage() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="weekly">Weekly</SelectItem>
-                      <SelectItem value="biweekly">Bi-weekly</SelectItem>
-                      <SelectItem value="monthly">Monthly</SelectItem>
+                      <SelectItem value="monthly">Weekly</SelectItem>
+                      <SelectItem value="weekly">Daily</SelectItem>
+                      <SelectItem value="biweekly">Hourly</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="currency">Currency</Label>
+                  <Label htmlFor="currency">Currency for Payment</Label>
                   <Select defaultValue="usd">
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="usd">USD ($)</SelectItem>
-                      <SelectItem value="eur">EUR (€)</SelectItem>
-                      <SelectItem value="gbp">GBP (£)</SelectItem>
+                      <SelectItem value="usd">USDT ($)</SelectItem>
+                      <SelectItem value="eur">ETHER (€)</SelectItem>
+                      <SelectItem value="gbp">USDC (£)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -260,11 +260,11 @@ export default function SettingsPage() {
                 <Separator />
 
                 <div className="space-y-2">
-                  <Label htmlFor="session-timeout">Session Timeout (minutes)</Label>
-                  <Input id="session-timeout" type="number" defaultValue="45" disabled />
+                  <Label htmlFor="emergency-withdrawal">Emergency Withdrawal</Label>
+                  <Input id="emergency-withdrawal" type="number" defaultValue="0"  />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 hidden">
                   <Label htmlFor="password-policy">Password Policy</Label>
                   <Select defaultValue="strong">
                     <SelectTrigger>
@@ -280,9 +280,9 @@ export default function SettingsPage() {
 
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label className="text-base">Login Audit Trail</Label>
+                    <Label className="text-base">Pause Paymments</Label>
                     <p className="text-sm text-muted-foreground">
-                      Keep detailed logs of login attempts
+                      Pause all payout to Employees
                     </p>
                   </div>
                   <Switch defaultChecked />
