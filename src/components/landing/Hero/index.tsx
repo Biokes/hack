@@ -1,21 +1,32 @@
 "use client";
 import Image from "next/image";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import Particles from "./particles";
 
-export default function Hero({ showCreateModal, setShowCreateModal }: {showCreateModal:boolean,setShowCreateModal: Dispatch<SetStateAction<boolean>>}){
+
+export default function Hero({ showCreateModal, setShowCreateModal }: { showCreateModal: boolean, setShowCreateModal: Dispatch<SetStateAction<boolean>> }) {
   const [email, setEmail] = useState("");
-
-  const handleSubmit = (e:  FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
   return (
-      <section  id="hero"  className="relative overflow-hidden pt-35 pb-20 md:pt-40 xl:pt-46 xl:pb-25">
+    <section id="hero" className="relative overflow-hidden pt-2 pb-25 md:pt-40 xl:pb-20 bg-gray-50">
+      {/* <Particles
+        particleColors={['#ffffff', '#ffffff']}
+        particleCount={200}
+        particleSpread={10}
+        speed={0.1}
+        particleBaseSize={100}
+        moveParticlesOnHover={true}
+        alphaParticles={false}
+        disableRotation={false}
+      > */}
         <div className="max-w-c-1390 mx-auto px-4 md:px-8 2xl:px-0">
           <div className="flex lg:items-center lg:gap-8 xl:gap-32.5">
             <div className="md:w-1/2">
               <h4 className="mb-4.5 text-lg font-medium text-black dark:text-white">
-                💰 StreamPay - Revolutionizing Salary Access
+                <span className="font-bold text-[1.5rem] ">StreamPay</span><br /> Revolutionizing Salary Access
               </h4>
               <h1 className="xl:text-hero mb-5 pr-16 text-3xl font-bold text-black dark:text-white">
                 Get Paid as You {"   "}
@@ -32,16 +43,9 @@ export default function Hero({ showCreateModal, setShowCreateModal }: {showCreat
               <div className="mt-10">
                 <form onSubmit={handleSubmit}>
                   <div className="flex flex-wrap gap-5">
-                    <input
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      type="email"
-                      placeholder="Enter your work email"
-                      className="border-stroke shadow-solid-2 focus:border-primary dark:border-strokedark dark:focus:border-primary rounded-full border px-6 py-2.5 focus:outline-hidden dark:bg-black dark:shadow-none"
-                    />
                     <button
                       aria-label="start streaming salary button"
-                      className="hover:bg-blackho dark:bg-btndark dark:hover:bg-blackho flex rounded-full bg-black px-7.5 py-2.5 text-white duration-300 ease-in-out"
+                      className="hover:bg-blackho dark:bg-btndark dark:hover:bg-blackho flex rounded-full bg-black px-7.5 py-2.5 text-white duration-300 ease-in-out hover:scale-[1.05]"
                       onClick={() => setShowCreateModal(!showCreateModal)}
                     >
                       Start Streaming
@@ -97,6 +101,9 @@ export default function Hero({ showCreateModal, setShowCreateModal }: {showCreat
             </div>
           </div>
         </div>
-      </section>
+      {/* </Particles> */}
+
+    </section>
+
   );
 };
