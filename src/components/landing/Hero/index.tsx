@@ -1,11 +1,9 @@
 "use client";
 import Image from "next/image";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
-// import CreateOrgModal from "@/components/ui/modals/createOrgModals";
 
 export default function Hero({ showCreateModal, setShowCreateModal }: {showCreateModal:boolean,setShowCreateModal: Dispatch<SetStateAction<boolean>>}){
   const [email, setEmail] = useState("");
-  // const [showCreateModal, setShowCreateModal] = useState(false);
 
   const handleSubmit = (e:  FormEvent<HTMLFormElement>) => {
     e.preventDefault();

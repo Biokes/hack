@@ -34,22 +34,3 @@ export default function LandingPage() {
     </div>
   );
 };
-// {/* </section> */}
-// {/* <section className="relative"> */}
-// {/* </section> */}
-// {/* <section id="features" className="relative"> */}
-// {/* <section id="about" className="relative"> */}
-// {/* </section> */}
-// {/* <section id="stats" className="relative"> */}
-// {/* </section> */}
-// {/* <section id="team" className="relative"> */}
-// {/* </section> */}
-// {/* <section id="faq" className="relative"> */}
-// {/* </section> */}
-// {/* <section id="cta" className="relative"> */}
-// {/* </section> */}
-// {/* Contact Section - Contact form and information */}
-// {/* <section id="contact" className="relative"> */}
-// {/* </section> */}
-// {/* Footer */}
-// {/* Scroll to Top Button */}
