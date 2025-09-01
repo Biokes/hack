@@ -28,10 +28,10 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-99999 w-full py-4 backdrop-blur-md transition duration-200 ${
+      className={`fixed top-0 left-0 z-99999 w-full py-4 backdrop-blur-md transition duration-200 bg-gray-200 ${
         stickyMenu
-          ? "bg-white/80 dark:bg-black/80 shadow-sm py-4!"
-          : "bg-white/60 dark:bg-black/60"
+          ? "dark:bg-black/80 shadow-sm py-4!"
+          : "dark:bg-black/60"
       }`}
       style={{ WebkitBackdropFilter: 'blur(16px)', backdropFilter: 'blur(16px)' }}
     >

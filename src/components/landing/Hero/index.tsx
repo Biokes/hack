@@ -1,25 +1,18 @@
 "use client";
 import Image from "next/image";
-import { FormEvent, useState } from "react";
-import CreateOrgModal from "@/components/ui/modals/createOrgModals";
-import { toast } from "sonner";
+import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+// import CreateOrgModal from "@/components/ui/modals/createOrgModals";
 
-const Hero = () => {
+export default function Hero({ showCreateModal, setShowCreateModal }: {showCreateModal:boolean,setShowCreateModal: Dispatch<SetStateAction<boolean>>}){
   const [email, setEmail] = useState("");
-  const [showCreateModal, setShowCreateModal] = useState(false);
+  // const [showCreateModal, setShowCreateModal] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e:  FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setShowCreateModal(true);
   };
 
   return (
-    <>
-      <CreateOrgModal 
-        open={showCreateModal} 
-        onOpenChange={setShowCreateModal} 
-      />
-      <section className="overflow-hidden pt-35 pb-20 md:pt-40 xl:pt-46 xl:pb-25">
+      <section  id="hero"  className="relative overflow-hidden pt-35 pb-20 md:pt-40 xl:pt-46 xl:pb-25">
         <div className="max-w-c-1390 mx-auto px-4 md:px-8 2xl:px-0">
           <div className="flex lg:items-center lg:gap-8 xl:gap-32.5">
             <div className="md:w-1/2">
@@ -38,7 +31,6 @@ const Hero = () => {
                 take control of your financial life with our revolutionary
                 salary streaming platform.
               </p>
-
               <div className="mt-10">
                 <form onSubmit={handleSubmit}>
                   <div className="flex flex-wrap gap-5">
@@ -50,18 +42,11 @@ const Hero = () => {
                       className="border-stroke shadow-solid-2 focus:border-primary dark:border-strokedark dark:focus:border-primary rounded-full border px-6 py-2.5 focus:outline-hidden dark:bg-black dark:shadow-none"
                     />
                     <button
-                      type="button"
                       aria-label="start streaming salary button"
-                      className="hover:bg-blackho dark:bg-btndark dark:hover:bg-blackho flex items-center gap-2 rounded-full bg-black px-7.5 py-2.5 text-white duration-300 ease-in-out"
-                      onClick={() => {
-                        toast.success("🚀 Coming Soon!", {
-                          description: "We're working hard to bring you something amazing. Stay tuned!",
-                          position: "bottom-center"
-                        });
-                      }}
+                      className="hover:bg-blackho dark:bg-btndark dark:hover:bg-blackho flex rounded-full bg-black px-7.5 py-2.5 text-white duration-300 ease-in-out"
+                      onClick={() => setShowCreateModal(!showCreateModal)}
                     >
-                      <span>Coming Soon</span>
-                      <span className="inline-flex items-center justify-center animate-pulse">🚀</span>
+                      Start Streaming
                     </button>
                   </div>
                 </form>
@@ -115,9 +100,5 @@ const Hero = () => {
           </div>
         </div>
       </section>
-    </>
   );
 };
-
-export default Hero;
-

@@ -3,22 +3,16 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { EIP1193Provider } from "viem";
+// import { useWallet } from "@/hooks/useWallet";
 import { useRouter } from "next/navigation";
 import { ethers } from "ethers";
 import contractAbi from "@/abi/index.json";
 import { useWallet } from "@/hooks/useWallet";
-import { toast } from "sonner";
+
 type Props = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 };
-
-declare global {
-  interface Window {
-    ethereum: EIP1193Provider | undefined;
-  }
-}
 
 export default function CreateOrgModal({ open, onOpenChange }: Props) {
   const { connectWallet} = useWallet();
@@ -30,40 +24,25 @@ export default function CreateOrgModal({ open, onOpenChange }: Props) {
 
   const handleConnect = async () => {
     try {
-      console.log("Attempting to connect wallet...");
+      // connect but avoid redirect so we can continue in the modal flow
       await connectWallet({ redirect: false });
-      console.log("Wallet connected successfully");
       setStep("create");
     } catch (err) {
       console.error("Wallet connect failed:", err);
-      toast.error("Failed to connect wallet. Please try again.");
     }
   };
 
   const handleCreateOrganisation = async () => {
     if (!window || !window.ethereum) {
-      toast.error("No wallet provider available. Please install MetaMask.");
+      alert("No ethereum provider available");
       return;
     }
-    
-    if (!orgName) {
-      toast.error("Please enter an organization name");
-      return;
-    }
-
-    if (!window.ethereum.selectedAddress) {
-      toast.error("Please connect your wallet first");
-      setStep("connect");
-      return;
-    }
-    
     setLoading(true);
-    console.log("Starting organization creation with address:", window.ethereum.selectedAddress);
 
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const signer = await provider.getSigner();
-      
+      const provider = new ethers.providers.Web3Provider(window.ethereum as any);
+      const signer = provider.getSigner();
+
       const contractAddress = "0x9f078c3B5c1F6c34e14DB9Bce07F62653282eb11"; // factory address in repo
       const contract = new ethers.Contract(contractAddress, contractAbi.abi || contractAbi, signer);
 
@@ -79,7 +58,6 @@ export default function CreateOrgModal({ open, onOpenChange }: Props) {
       router.push("/admin/dashboard");
     } catch (err) {
       console.error("Error creating organisation:", err);
-      toast.error("Failed to create organisation. Please try again.");
     } finally {
       setLoading(false);
     }

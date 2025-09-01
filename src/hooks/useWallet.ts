@@ -5,7 +5,7 @@ import { setWallet, clearWallet, setUserType } from "../store/walletSlice";
 import { useCallback, useEffect } from "react";
 import { EIP1193Provider } from "viem";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+
 // Extend the Window interface to include ethereum
 declare global {
   interface Window {
@@ -24,7 +24,7 @@ export function useWallet() {
   const connectWallet = useCallback(async (options?: { redirect?: boolean }) => {
     const { redirect = true } = options || {};
     if (!window.ethereum) {
-      toast("Metamask not detected");
+      alert("Metamask not detected");
       return;
     }
 
@@ -37,13 +37,14 @@ export function useWallet() {
 
 
 
-      toast("Wallet connected successfully");
       if (adminWallets.includes(accounts[0])) {
         dispatch(setUserType("admin"));
-        if (redirect) router.push("/admin/dashboard");
+        console.log("✅ Admin connected");
+        if (redirect) router.push("/admin");
       } else {
         dispatch(setUserType("user"));
-        if (redirect) router.push("/employee/dashboard");
+        console.log("✅ User connected");
+        if (redirect) router.push("/user");
       }
       const address=  accounts[0];
       dispatch(setWallet({ address, chainId }));
